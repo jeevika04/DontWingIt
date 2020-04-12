@@ -1,0 +1,26 @@
+.be-left, .be-right{
+    display: flex;
+}
+.be-left{
+    align-items: flex-start;
+}
+.be-right{
+    align-items: flex-end;
+}
+.logo{
+    max-height: 10vh;
+    max-width: 10vh;
+}
+#info-bar{
+    background-color: #EEEEEE;
+}
+
+.item {
+    margin: 10px;
+}
+.score{
+    color: #09DD09;
+}
+.container{
+   margin: 25px;
+}
