@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Don't Wing It</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Don't Wing It</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.css" />
 </head>
+
 <body>
 
-<div id = "info-bar">
-    <div class="row">
-        <div class="col be-left">
-            <div class = "item">
-                <img class = "logo" src = "download.jpg"/>
+    <div id="info-bar">
+        <div class="row">
+            <div class="col be-left">
+                <div class="item">
+                    <img class="logo" src="download.jpg" />
+                </div>
+                <div class="name item">
+                    Don't Wing It
+                </div>
+                <div class="score item">
+                    50 points
+                </div>
+                <div class="account item">
+                    Your Name
+                </div>
             </div>
-            <div class = "name item">
-                Don't Wing It
-            </div>
-            <div class = "score item">
-                50 points
-            </div>
-            <div class = "account item">
-                Your Name
-            </div>
-        </div>
-        <!--div class="col be-right">
+            <!--div class="col be-right">
             <div class = "score"></div>
             <div class = "account"></div>
         </div-->
+        </div>
     </div>
 </div>
 <div class = "container">
@@ -89,6 +94,31 @@
             </div>
         </div>
     </div>
-</div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDSYAo0FHhF79Aznk97990_OZCb3PRWxzM",
+            authDomain: "dontwingit.firebaseapp.com",
+            databaseURL: "https://dontwingit.firebaseio.com",
+            projectId: "dontwingit",
+            storageBucket: "dontwingit.appspot.com",
+            messagingSenderId: "411249906868",
+            appId: "1:411249906868:web:db9a4a1b192cb4814173e1",
+            measurementId: "G-W1T9SZ8256"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
 </body>
+
 </html>
