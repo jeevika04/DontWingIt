@@ -1,25 +1,48 @@
+body{
+    font-family: 'Verdana', 'Century Gothic';
+}
 .be-left, .be-right{
-    display: flex;
+    display: table;
+    height: 100%;
+}
+.col-table{
+    display: table;
+    height: 100%;
 }
 .be-left{
-    align-items: flex-start;
+    
 }
 .be-right{
-    align-items: flex-end;
+    
+    float: right;
+}
+.right-item{
+    float: right;
 }
 .logo{
-    max-height: 10vh;
-    max-width: 10vh;
+    max-height: 7vh;
+    max-width: 7vh;
 }
 #info-bar{
     background-color: #EEEEEE;
 }
 
 .item {
-    margin: 10px;
+    margin: 5px 15px;
+    vertical-align: middle;
+    display: inline-block;
 }
 .score{
-    color: #09DD09;
+    color: #09CC09;
+    font-size: 20pt;
+    font-weight: 600;
+}
+.account{
+    font-size: 20pt;
+}
+.name{
+    font-size: 24pt;
+    font-weight: 700;
 }
 .container{
    margin: 25px;
