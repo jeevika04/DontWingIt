@@ -24,3 +24,17 @@
 .container{
    margin: 25px;
 }
+.checklist{
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.design{
+    background-color: #AABBBB;
+}
+.development{
+    background-color: #AAAABB;
+}
+.testing{
+    background-color: #BBAABB;
+}
