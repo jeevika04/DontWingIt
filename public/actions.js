@@ -37,6 +37,7 @@ var get_user_testing_issues_html =
         '</div>'+
     '</div>'
 '</div>';
+
 function generateDevelopmentDesignChecklistItem(content){
     var id = "devdes"+design_count;
     var development_design_checklist_item_html = 
@@ -432,6 +433,7 @@ function getExpertIssue(){
 function clearDesignTask(){
     $("#design-text").val("");
 }
+
 $(document).on('keyup', function(e) {
     if(e.which == 8){
         //backspace
