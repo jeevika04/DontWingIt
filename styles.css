@@ -1,9 +1,14 @@
 body{
-    font-family: 'Verdana', 'Century Gothic';
+    font-family: 'Verdana';
+    font-size: 14pt;
+}
+h1, h2, h3, h4{
+    font-family: 'Century Gothic';
 }
 .be-left, .be-right{
-    display: table;
+    display: inline-flex;
     height: 100%;
+    align-items: center;
 }
 .col-table{
     display: table;
@@ -25,6 +30,12 @@ body{
 }
 #info-bar{
     background-color: #EEEEEE;
+  
+    align-items: center;
+}
+.contain{
+   justify-content: center;
+   margin: 5vh 15vh;
 }
 
 .item {
@@ -36,6 +47,9 @@ body{
     color: #09CC09;
     font-size: 20pt;
     font-weight: 600;
+}
+.checklist-holder{
+    padding: 0 20px;
 }
 .account{
     font-size: 20pt;
@@ -52,12 +66,28 @@ body{
     border-radius: 5px;
     margin: 10px;
 }
-.design{
-    background-color: #AABBBB;
+.ch-item{
+    
 }
-.development{
-    background-color: #AAAABB;
+.expl{
+    padding: 0;
+    display: inline-block;
 }
-.testing{
-    background-color: #BBAABB;
+.icon-holder{
+    float: right;
+}
+.reference{
+    border-radius: 3px;
+    background-color: white;
+    padding: 5px;
+    margin-right: 5px;
+}
+.dev-label{
+    display: inline-flex;
+    align-items: center;
+}
+.explanation{
+    word-wrap: normal;
+    overflow-wrap: break-word;
+    padding: 0;
 }

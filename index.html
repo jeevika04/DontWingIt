@@ -14,6 +14,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/9b88f7a108.js"></script>
 
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.js"></script>
@@ -43,61 +44,178 @@
                     <div class="account item">
                         Your Name
                     </div>
+                    
                 </div> 
             </div>
         </div>
     </div>
 </div>
-<div class = "container">
-    <h1>Project Name</h1>
-    <div class = "checklists">
-        <div class = "checklist design">
-            <h2>Design</h2>
-            <div class = "ch-item">
-                <div class="row">
-                    <div class="col-s-2">
-                        <input type="checkbox" aria-label="Dynamically add this" class = "item">
+<div class = "contain justify-content-center">
+    <div class = "container-content">
+        <h1>Project Name</h1>
+        <div class = "checklists">
+            <div class = "checklist design">
+                <h3>Design</h3>
+                <div class = "checklist-holder">
+                    <div class = "explanation">
+                        How will your website look and behave? 
+                        This is the place to draft ideas about your website, 
+                        and write down any special features you or your users want implemented.
                     </div>
-                    <div class="col-s-10">
-                        <div class = "description item">
-                            Words
+                    <div class = "ch-item">
+                        <label for = "why-failed-expert-testing">Add Specific Features</label>
+                        <br/>
+                        <div class="input-group" id = "why-failed-expert-testing">
+                            <input type="text" class="form-control" id = "design-text" placeholder="Feature" aria-label="Feature" aria-describedby="why-failed-expert-testing">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary" type="button" id = "add-design">Add</button>
+                            </div>
                         </div>
                     </div>
-                  </div>
+                </div>
             </div>
-        </div>
-        <div class = "checklist development">
-            <h2>Development</h2>
-            <div class = "ch-item">
-                <div class="row">
-                    <div class="col-s-2">
-                        <input type="checkbox" aria-label="Dynamically add this" class = "item">
+            <div class = "checklist development">
+                <h2>Development</h2>
+                <div class = "checklist-holder">
+                    <h3>Specific Features</h3>
+                    <div class = "show-development-issues-slot">
+                        
                     </div>
-                    <div class="col-s-10">
-                        <div class = "description item">
-                            Do this thing
+                    <h3>Web Content Accessibility Guidelines (WCAG 2.1)</h3>
+                    <div class = "explanation">
+                        Do your best to adhere to the Web Content Accessibility Guidelines, or WCAG. Find more information on the 
+                        <a href = "https://www.w3.org/TR/WCAG21/#intro">W3C WCAG Reference</a> 
+                        (https://www.w3.org/TR/WCAG21/#intro)
+                    </div>
+                    <div class = "wcag-filter-buttons-holder">
+                        <h4>Filter By Classification</h4>
+                        <input type="checkbox" aria-label="Show WCAG A-level Classifications" checked = "true" aria-checked="true" class = "item" id = "A-level">
+                        <label for = "A-level">A</label>   
+                        <input type="checkbox" aria-label="Show WCAG AA-level Classifications" class = "item" id = "AA-level">
+                        <label for = "AA-level">AA</label>   
+                        <input type="checkbox" aria-label="Show WCAG AAA-level Classifications" class = "item" id = "AAA-level">
+                        <label for = "AAA-level">AAA</label>   
+                    </div>
+                    <div id="accordion">
+                        <div class="card">
+                          <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Percievable
+                              </button>
+                            </h5>
+                          </div>
+                      
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class = "ch-item">
+                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                    <label for = "dev1" class = "dev-label">
+                                        1.1.1 Non-Text-Content
+                                    </label>    
+                                </div>            
+                            </div>
+                          </div>
                         </div>
-                    </div>
-                  </div>
+                        <div class="card">
+                          <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Operable
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class = "ch-item">
+                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                    <label for = "dev1">Make button</label>    
+                                </div>                            
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Understandable
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class = "ch-item">
+                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                    <label for = "dev1">Make button</label>    
+                                </div>                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                  Robust
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                              <div class="card-body">
+                                <div class = "ch-item">
+                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                    <label for = "dev1">Make button</label>    
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    
+                    
+                    
+                </div>
             </div>
-        </div>
-        <div class = "checklist testing">
-            <h2>Testing</h2>
-            <div class = "ch-item">
-                <div class="row">
-                    <div class="col-s-2">
-                        <input type="checkbox" aria-label="Dynamically add this" class = "item">
+            <div class = "checklist testing">
+                <h2>Testing</h2>
+                <div class = "checklist-holder">
+                    <div class = "explanation">Ensure your website functions as you intended</div>
+                    <h3>Automated Testing</h3>
+                    <div class = "ch-item">
+                        <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "test1">
+                        <label for = "test1">WAVE</label>    
                     </div>
-                    <div class="col-s-10">
-                        <div class = "description item">
-                            Automation Testing
-                        </div>
+                    <div class = "ch-item">
+                        <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "test2">
+                        <label for = "test2">WebAIM</label>    
                     </div>
-                  </div>
+                    <h3>Specific Feature Testing</h3>
+                    <div id = "show-specific-features-slot"></div>
+                    <div class = "ch-item">
+                        <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "test1">
+                        <label for = "test1">WAVE</label>    
+                    </div>
+                    <div class = "ch-item">
+                        <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "test2">
+                        <label for = "test2">WebAIM</label>    
+                    </div>
+                    <div id = "get-specific-features-slot"></div>
+                    <h3>Expert Testing</h3>
+                    <div class = "ch-item" id = "expert-testing">
+                        <button type = "button" class = "btn btn-success" id = "passed-expert">Pass</button>
+                        <button type="button" class = "btn btn-danger" id = "failed-expert">Fail</button>
+                        <br/>
+                        <div id = "get-expert-issues-slot"></div>
+                    </div>
+                    <h3>User Testing</h3>
+                    <div class = "ch-item" id = "user-testing">
+                        <button type = "button" class = "btn btn-success" id = "passed-user">Pass</button>
+                        <button type="button" class = "btn btn-danger" id = "failed-user">Fail</button>
+                        <br/>
+                        <div id = "get-user-issues-slot"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
+</div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
 
