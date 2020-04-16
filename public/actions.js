@@ -17,25 +17,37 @@ var testing_count = 0;
 var design_count = 0;
 var get_expert_testing_issues_html = 
 '<div id = "get-expert-issues">'+
-    '<label for = "why-failed-expert-testing">Why did the website fail expert testing?</label>'+
+    '<label for = "why-failed-expert-testing">Which issues did you find during expert testing?</label>'+
     '<div class="input-group" id = "why-failed-expert-testing">'+
-        '<input type="text" class="form-control" placeholder="Reason for failing" id = "expert-text" aria-label="Reason for failing" aria-describedby="why-failed-expert-testing">'+
+        '<input type="text" class="form-control" placeholder="Describe the issue" id = "expert-text" aria-label="Describe the issue" aria-describedby="why-failed-expert-testing">'+
         '<div class="input-group-append">'+
-        '<button class="btn btn-primary" type="button" id = "add-expert-issue">Add</button>'+
-        '<button class="btn btn-secondary" type="button" id = "done-adding-expert-issues">Done</button>'+
+            '<select class="custom-select" id="select-severity-expert">'+
+                '<option selected>Severity</option>'+
+                '<option value="1">Minor</option>'+
+                '<option value="2">Serious</option>'+
+                '<option value="3">Catastrophic</option>'+
+            '</select>'+
+            '<button class="btn btn-primary" type="button" id = "add-expert-issue">Add</button>'+
+            '<button class="btn btn-secondary" type="button" id = "done-adding-expert-issues">Done</button>'+
         '</div>'+
     '</div>';
 '</div>';
 var get_user_testing_issues_html = 
 '<div id = "get-user-issues">'+
-    '<label for = "why-failed-user-testing">Why did the website fail user testing?</label>'+
+    '<label for = "why-failed-user-testing">Which issues did you find during user testing?</label>'+
     '<div class="input-group" id = "why-failed-user-testing">'+
-        '<input type="text" class="form-control" placeholder="Reason for failing" id = "user-text" aria-label="Reason for failing" aria-describedby="why-failed-user-testing">'+
+        '<input type="text" class="form-control" placeholder="Describe the issue" id = "user-text" aria-label="Describe the issue" aria-describedby="why-failed-expert-testing">'+
         '<div class="input-group-append">'+
-        '<button class="btn btn-primary" type="button" id = "add-user-issue">Add</button>'+
-        '<button class="btn btn-secondary" type="button" id = "done-adding-user-issues">Done</button>'+
+            '<select class="custom-select" id="select-severity-user">'+
+                '<option selected>Severity</option>'+
+                '<option value="1">Minor</option>'+
+                '<option value="2">Serious</option>'+
+                '<option value="3">Catastrophic</option>'+
+            '</select>'+
+            '<button class="btn btn-primary" type="button" id = "add-user-issue">Add</button>'+
+            '<button class="btn btn-secondary" type="button" id = "done-adding-user-issues">Done</button>'+
         '</div>'+
-    '</div>'
+    '</div>';
 '</div>';
 
 function generateDevelopmentDesignChecklistItem(content){
@@ -159,46 +171,7 @@ function relative_luminance(colorArray8Bit){
 function accessibleContrastRatio(scheme){
   return contrast_ratio(relative_luminance(scheme[0]), relative_luminance(scheme[1])) >= 7.0;
 }
-function colorArrayToString(array){
-    return "rgb("+array[0]+","+array[1]+","+array[2]+")";
-};
 
-function getCurrentMilitaryTime(){
-    var date = new Date();
-    return date.getHours().toString()+date.getMinutes().toString();
-    //return "1901";
-}
-function getCapitalizedWord(string){ 
-    var new_char = string[0].toUpperCase();
-    var new_string = new_char + string.substring(1, string.length);
-    ////console.log("new string", new_string);
-    return new_string;
-}
-function capitalizeSentence(sentence){
-    if(sentence.length == 0){
-        console.log("empty sentence", sentence);
-        return "";
-    }
-    var words = sentence.split(" ");
-    var new_words = [];
-    words.forEach((current_word)=>{
-        new_words.push(getCapitalizedWord(current_word));
-    })
-    return new_words.join(" ");
-}
-
-
-function getCurrentTasks(){
-    var current_tasks = [];
-    var current_time = getCurrentMilitaryTime();
-    //console.log("current military time", current_time);
-    board.data.forEach((task)=>{
-        if(inside(current_time, task.start, task.end)){
-            current_tasks.push(task);
-        }
-    });
-    return current_tasks;
-}
 function applyColorScheme(colors){
     console.log("applying color scheme");
     var lightc0 = hsl_to_rgb( lightenColor( rgb_to_hsl( colors[0] ) ) );
@@ -350,9 +323,7 @@ function darkenColor(color){
 }
 
 
-$(document).ready(function(){
-    applyColorScheme(colorScheme);
-});
+
 
 function toMilitaryTime(time){
     if(time.length == 0){
@@ -372,7 +343,7 @@ function toMilitaryTime(time){
     return sHours+sMinutes;
 }
 function displayGetExpertIssues(){
-    $("#get-expert-issues-slot").append(get_expert_testing_issues_html);
+    $("#get-expert-issues-slot").html(get_expert_testing_issues_html);
 }
 function removeGetExpertIssues(){
     console.log("done adding expert issues");
@@ -430,9 +401,40 @@ function getExpertIssue(){
     $("#expert-text").empty();
     return generateDevelopmentExpertTestingChecklistItem(expert_text);
 }
-function clearDesignTask(){
+function clearDesignField(){
     $("#design-text").val("");
 }
+
+
+function submitFeature(){
+    addDesignToDevelopment();
+    addDesignToTesting();
+    clearDesignField();
+}
+$(document).ready(function(){
+    applyColorScheme(colorScheme);
+    $('#failed-expert').on('click', ()=>{
+        displayGetExpertIssues();
+    });
+    $('#failed-user').on('click', ()=>{
+        displayGetUserIssues();
+    });
+    $('#done-adding-expert-issues').on('click', ()=>{
+        removeGetExpertIssues();
+    });
+    $('#add-user-issue').on('click', ()=>{
+        addUserIssueToDevelopment();
+    });
+    $('#add-expert-issue').on('click', ()=>{
+        addUserIssueToDevelopment();
+    });
+    $('#add-design').on('click', ()=>{
+        submitFeature();
+    });
+    $('#done-adding-user-issues').on('click', ()=>{
+        removeGetUserIssues();
+    });
+});
 
 $(document).on('keyup', function(e) {
     if(e.which == 8){
@@ -457,12 +459,10 @@ $(document).on('keyup', function(e) {
             addUserIssueToDevelopment();
         }
         else if($("#add-expert-issue").is(":focus")){
-            addExpertIssueToDevelopment();
+            
         }
         else if($("#add-design").is(":focus")){
-            addDesignToDevelopment();
-            addDesignToTesting();
-            clearDesignTask();
+            submitFeature();
         }
     }
 });
