@@ -23,40 +23,57 @@
 </head>
 
 <body>
-  
-<div id="info-bar">
-    <div class="row">
-        <div class="col">
-            <div class = "be-left">
-                <div class="item">
-                    <img class="logo" src="hugu.png" />
-                </div>
-                <div class="name item">
-                    Don't Wing It
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.14.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.1/firebase-database.js"></script>
+
+    <script src="application.js"></script>
+    
+    <div id="info-bar">
+        <div class="row">
+            <div class="col ">
+                <div class = "be-left">
+                    <div class="item">
+                        <img class="logo" src="hugu.png" />
+                    </div>
+                    <div class="name item">
+                        Don't Wing It
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col ">
-            <div class = "be-right">
-                <div class="score item">
-                    50
-                </div>
-                <div class = "circle item account-picture" tabindex = "0"></div>
-                <div class="account item">
-                    <div class = "account-name">Namey McNameface</div>
-                </div>
-                
-            </div> 
+            <div class="col ">
+                <div class = "be-right">
+                    <div class="score item" id="points">
+                        100
+                    </div>
+                    <div class="account item" id="name">
+                        Name                        
+                    </div>
+                </div> 
+            </div>
         </div>
     </div>
 </div>
-</div>
-<div class = "wrapper">
+<script>
+  var playersRef = firebase.database().ref("users/");
+
+  playersRef.on("child_added", function(data, prevChildKey) {
+    var newPlayer = data.val();
+    document.getElementById("name").innerHTML = newPlayer.name;
+    document.getElementById("points").innerHTML =  newPlayer.points;
+  });
+
+</script>
 <div class = "contain justify-content-center">
     <div class = "container-content">
-        <h1>Project</h1>
+        <h1>Project Name</h1>
         <div class = "checklists">
-            <div class = "checklist design" >
+            <div class = "checklist design">
                 <h3>Design</h3>
                 <div class = "checklist-holder">
                     <div class = "explanation">
@@ -76,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class = "checklist development" >
+            <div class = "checklist development">
                 <h2>Development</h2>
                 <div class = "checklist-holder">
                     <h3>Specific Features</h3>
@@ -175,7 +192,7 @@
                     
                 </div>
             </div>
-            <div class = "checklist testing" >
+            <div class = "checklist testing">
                 <h2>Testing</h2>
                 <div class = "checklist-holder">
                     <div class = "explanation">Ensure your website functions as you intended</div>
@@ -210,18 +227,6 @@
         </div>
     </div>
 </div>
-</div>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
-    <script src="/__/firebase/7.14.0/firebase-auth.js"></script>
-    <script src="/__/firebase/7.14.1/firebase-database.js"></script>
-
-    <script src="application.js"></script>
-
 </body>
 
 </html>
