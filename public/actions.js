@@ -11,7 +11,8 @@ class ColorScheme{
     }
     
 };
-var colorScheme = generateQuadColorScheme();
+var s_c = [0, 83, 102];
+var colorScheme = generateQuadColorScheme(s_c);
 console.log("color scheme: "+colorScheme);
 var testing_count = 0;
 var design_count = 0;
@@ -76,8 +77,32 @@ function generateDevelopmentDesignChecklistItemNoReference(content){
     console.log("s f", development_design_checklist_item_no_html);
     return development_design_checklist_item_no_html;
 }
-function generateDevelopmentExpertTestingChecklistItem(content){
+function generateDevelopmentExpertTestingChecklistItem(content, severity){
     var id = "devtest"+testing_count;
+    var sev_str = "";
+    console.log(severity);
+    if(severity == "1"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="far fa-frown-open"></i> Minor'+
+        '</div>'
+    }
+    else if(severity == "2"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="far fa-sad-cry"></i> Serious'+
+        '</div>'
+    }
+    else if(severity == "3"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="fas fa-radiation"></i> Catastrophic'+
+        '</div>'
+    }
+    else {
+        //no severity selected
+        console.log("user did not pick a severity");
+    }
     var development_expert_checklist_item_html = 
     '<div class = "ch-item">'+
         '<input type="checkbox" aria-label="'+content+'" class = "item" id = "'+id+'">'+
@@ -85,14 +110,39 @@ function generateDevelopmentExpertTestingChecklistItem(content){
             '<div class = "testing-issue-reference reference">'+
                 'Expert Testing'+
             '</div>'+
-            content
+            sev_str+
+            content+
         '</label>'+
     '</div>';
     console.log(development_expert_checklist_item_html);
     return development_expert_checklist_item_html;
 }
-function generateDevelopmentUserTestingChecklistItem(content){
+function generateDevelopmentUserTestingChecklistItem(content, severity){
     var id = "devtest"+testing_count;
+    var sev_str = "";
+    console.log(severity);
+    if(severity == "1"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="far fa-frown-open"></i> Minor'+
+        '</div>'
+    }
+    else if(severity == "2"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="far fa-sad-cry"></i> Serious'+
+        '</div>'
+    }
+    else if(severity == "3"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="fas fa-radiation"></i> Catastrophic'+
+        '</div>'
+    }
+    else {
+        //no severity selected
+        console.log("user did not pick a severity");
+    }
     var development_user_checklist_item_html = 
     '<div class = "ch-item">'+
         '<input type="checkbox" aria-label="'+content+'" class = "item" id = "'+id+'">'+
@@ -100,14 +150,13 @@ function generateDevelopmentUserTestingChecklistItem(content){
             '<div class = "testing-issue-reference reference">'+
                 'User Testing'+
             '</div>'+
-            content
+            sev_str+
+            content+
         '</label>'+
     '</div>';
     return development_user_checklist_item_html;
 }
-function generateQuadColorScheme(){
-    var cs = new ColorScheme();
-    var start_color = [0, 83, 102];
+function generateQuadColorScheme(start_color){
     var start_color_hsl = rgb_to_hsl(start_color);
     var first_color = start_color_hsl;
     var second_color = start_color_hsl;
@@ -178,6 +227,7 @@ function applyColorScheme(colors){
     var lightc1 = hsl_to_rgb( lightenColor( rgb_to_hsl( colors[1] ) ) );
     var lightc2 = hsl_to_rgb( lightenColor( rgb_to_hsl( colors[2] ) ) );
     var lightc3 = hsl_to_rgb( lightenColor( rgb_to_hsl( colors[3] ) ) );
+    $(".circle").css("background-color", "rgb("+colors[0]+")");
     $("#info-bar").css("background-color", "rgb("+lightc0+")");
     $("#info-bar").css("color", "rgb("+colors[0]+")");
     $(".score").css("color", "rgb("+colors[0]+")");
@@ -350,7 +400,7 @@ function removeGetExpertIssues(){
     $("#get-expert-issues-slot").empty();
 }
 function displayGetUserIssues(){
-    $(get_user_testing_issues_html).appendTo("#get-user-issues-slot");
+    $("#get-user-issues-slot").html(get_user_testing_issues_html);
 }
 function removeGetUserIssues(){
     console.log("done adding user issues");
@@ -392,25 +442,28 @@ function getDesignTaskNoReference(){
 }
 function getUserIssue(){
     var user_text = $("#user-text").val();
+    var severity_user_value = $("#select-severity-user").val();
     console.log("user text", user_text);
-    $("#user-text").empty();
-    return generateDevelopmentUserTestingChecklistItem(user_text);
+    $("#user-text").empty("");
+    return generateDevelopmentUserTestingChecklistItem(user_text, severity_user_value);
 }
 function getExpertIssue(){
     var expert_text = $("#expert-text").val();
-    $("#expert-text").empty();
-    return generateDevelopmentExpertTestingChecklistItem(expert_text);
+    var severity_expert_value = $("#select-severity-expert").val();
+    $("#expert-text").val("");
+    return generateDevelopmentExpertTestingChecklistItem(expert_text, severity_expert_value);
 }
 function clearDesignField(){
     $("#design-text").val("");
 }
 
 
-function submitFeature(){
+function addDesignToDevelopmentAndTesting(){
     addDesignToDevelopment();
     addDesignToTesting();
     clearDesignField();
 }
+
 $(document).ready(function(){
     applyColorScheme(colorScheme);
     $('#failed-expert').on('click', ()=>{
@@ -419,21 +472,32 @@ $(document).ready(function(){
     $('#failed-user').on('click', ()=>{
         displayGetUserIssues();
     });
-    $('#done-adding-expert-issues').on('click', ()=>{
+    $(document).on('click', '#done-adding-expert-issues', ()=>{
         removeGetExpertIssues();
     });
-    $('#add-user-issue').on('click', ()=>{
-        addUserIssueToDevelopment();
-    });
-    $('#add-expert-issue').on('click', ()=>{
-        addUserIssueToDevelopment();
-    });
-    $('#add-design').on('click', ()=>{
-        submitFeature();
-    });
-    $('#done-adding-user-issues').on('click', ()=>{
+    $(document).on('click', '#done-adding-user-issues', ()=>{
         removeGetUserIssues();
     });
+    $(document).on('click', '#add-user-issue', ()=>{
+        console.log("add user issue clicked");
+        addUserIssueToDevelopment();
+    });
+    $(document).on('click', '#add-expert-issue', ()=>{
+        console.log("add user issue clicked");
+        addExpertIssueToDevelopment();
+    });
+    $('#add-design').on('click', ()=>{
+        addDesignToDevelopmentAndTesting();
+    });
+    /*
+    $(".circle").click(()=>{
+        var l = 0;
+        var u = 50;
+        var new_color = [Math.round(Math.random()) * u, Math.round(Math.random()) * u, Math.round(Math.random()) * u];
+        var new_colors = generateQuadColorScheme(new_color);
+        applyColorScheme(new_colors);
+    });
+    */
 });
 
 $(document).on('keyup', function(e) {
@@ -459,10 +523,10 @@ $(document).on('keyup', function(e) {
             addUserIssueToDevelopment();
         }
         else if($("#add-expert-issue").is(":focus")){
-            
+            addExpertIssueToDevelopment();
         }
         else if($("#add-design").is(":focus")){
-            submitFeature();
+            addDesignToDevelopmentAndTesting();
         }
     }
 });
