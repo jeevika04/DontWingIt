@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Don't Wing It</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/9b88f7a108.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.0/firebase-ui-auth.css" />
+    <script src = "actions.js"></script>
+</head>
+
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.14.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.14.1/firebase-database.js"></script>
+
+    <script src="application.js"></script>
+    
+
+    
+<div id="info-bar" class = "checklist page-height">
+    <h1>What is accessibility?</h1>
+    <div class = "explanation indented">
+        <div class = "row">
+            <div class = "col-1 symbol-holder">
+                <i class="fas fa-quote-left symbol"></i>
+            </div>
+            <div class = "col-11 para">
+                <div class = "explanation"> Accessibility is the practice of making your websites usable by as many people as possible. </div>
+                <div class = "quote">
+                    -<a href = "https://developer.mozilla.org/en-US/docs/Learn/Accessibility/">
+                        Mozilla Developer Network
+                    </a>
+                        (https://developer.mozilla.org/en-US/docs/Learn/Accessibility/)
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr/>
+    <h1>What is this?</h1>
+    <div class = "indented explanation">
+        DontWingIt was built with one goal in mind: to make accessible web content easier; So people don't wing it. 
+        DontWingIt tries to make development easier through gamification. We reward our users with points as they complete tasks. 
+        <h2>Who should you be?</h2>
+        Just about anyone who wants to make an accessible website. While our target audience is anyone, our product works best with absolute beginners. 
+        Beginners are able to benefit from all our services we provide (learning component, gamification, development process guide, issue tracking).    
+    </div>
+    <hr/>
+    <h1>Product format</h1>
+    <div class = "indented explanation">
+        Accessibility should be built in to your website. As such, you need to be thinking about accessibility every step of the development process.
+        The development ideology our product outlines, and you will be following is design, develop, test.  
+    </div>
+    <div class = "indented explanation">
+        <div class = "design reference">
+            <h2>Design</h2>
+            <div class = "indented expanation">
+                As the first phase of the development process, you can walk in with absolutely no ideas. Here, you will think about everything you want your product to have.
+                Since this is not a product purely for accessibility, but for developing in an accessible manor, you will include both general features, and accessibility features.
+                You can continue to add features throughout the entire development process. Features you add will show up in the development tab, and the testing tab.  
+            </div>
+        </div>
+        <div class = "development reference">
+            <h2>Development</h2>
+            <div class = "indented expanation">
+                This is the second phase of the 3 phases of the development process. This is where the gamification component comes into play.
+                Each feature you added in the design phase will show up here with a corresponding checkbox. As you finish developing a feature, check the box, and your score will increase.
+            </div>
+            <div class = "indented explanation">
+                For additional accessibility considerations as well as compliance, we have included the complete Web Content Accessibility Guidelines (WCAG 2.1) as items to complete. 
+                Here, you can audit your website as you are developing it, or soon after. 
+            </div>
+        </div>
+        <div class = "testing reference">
+            <h2>Testing</h2>
+            <div class = "indented explanation">
+                Testing is the last phase of the development process. It outlines both generic software testing as well as software testing.
+            </div>
+            <div class = "indented explanation">
+                In the specific feature testing section, you can ensure your features function properly.
+            </div>
+            <div class = "indented explanation">
+                <h2>Accessibility Testing</h2>
+                Accessibility Testing follows 3 phases: Automated, Expert, User. It's important they're done in this order.
+                <div class = "indented explanation">
+                    <h3>Automated Testing</h3>
+                    <div class = "explanation indented">
+                        There are several platforms developers can use to ensure their web content is accessible. Running your website through these will give you tons of insight.
+                        These are to be run before you conduct expert or user testing. This is because automated testing is much cheaper, and can be ran at your convenience. 
+                        If this isn't run before expert testing, you will waste the expert's time with basic issues you could have found in a few seconds with automated tools. 
+                    </div>
+                </div>
+                <div class = "indented explanation">
+                    <h3>Expert Testing</h3>
+                    <div class = "indented explanation">
+                        Expert testing is getting a professional to generate a report on the accessibility of your website. This should be done after automated testing, 
+                        so the expert's time is spent finding issues automated tools are not capable of finding. 
+                    </div>
+                    <div class = "indented explanation">
+                        Our product allows you to submit all the issues the expert found and rank their severity as well. These issues will appear in the development phase.
+                    </div>
+                </div>
+                <div class = "indented explanation">
+                    <h3>User Testing</h3>
+                    <div class = "indented explanation">
+                        User testing is getting a differently-abled person to use your website. This should be done after last, 
+                        so the user's unique perspective can be fully utilized, rather than finding issues experts, or worse, automated tools could find. 
+                    </div>
+                    <div class = "indented explanation">
+                        Our product allows you to submit all the issues the user found and rank their severity as well. These issues will appear in the development phase.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" id = "go-to-dwi">Go to DontWingIt</button>
+</div>
+
+
+</body>
+
+</html>

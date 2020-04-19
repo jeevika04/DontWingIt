@@ -27,9 +27,32 @@ h1, h2, h3, h4, .name{
 .non-task{
     font-weight: 600;
 }
+.symbol{
+    float: right;
+    padding-right: 0;
+}
+.symbol-holder{
+    max-width: fit-content;
+}
+.para{
+    float: left;
+    padding-left: 0;
+}
+.page-height{
+    /*height: 100vh;*/
+    overflow: auto;
+}
+.quote{
+    font-size: small;
+}
+.indented{
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
 .be-right{
     display: inline-flex;
     float: right;
+    margin-right: 15px;
 }
 .right-item{
     float: right;

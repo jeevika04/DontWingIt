@@ -468,7 +468,12 @@ function addDesignToDevelopmentAndTesting(){
     addDesignToTesting();
     clearDesignField();
 }
-
+function goToDWI(){
+    window.location = "index.html"
+}
+function goToAbout(){
+    window.location = "about.html"
+}
 $(document).ready(function(){
     applyColorScheme(colorScheme);
     $('#failed-expert').on('click', ()=>{
@@ -493,6 +498,9 @@ $(document).ready(function(){
     });
     $('#add-design').on('click', ()=>{
         addDesignToDevelopmentAndTesting();
+    });
+    $('#go-to-dwi').on('click', ()=>{
+        goToDWI();
     });
     /*
     $(".circle").click(()=>{
@@ -532,6 +540,9 @@ $(document).on('keyup', function(e) {
         }
         else if($("#add-design").is(":focus")){
             addDesignToDevelopmentAndTesting();
+        }
+        else if("#go-to-dwi"){
+            goToDWI();         
         }
     }
 });
