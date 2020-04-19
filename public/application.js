@@ -31,11 +31,10 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   var userRef = myFirebase.child('users');
   // Push our first recommendation to the end of the list and assign it a
   // unique ID automatically.
-  var userKey = userRef.push({
-      email : user.email,
+  userRef.child('jeevika').set({
       features : [],
       name : user.displayName,
-      points : 0,
+      points : 0, 
       testing : {
           automated : {
               checked : false,
