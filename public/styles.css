@@ -24,6 +24,9 @@ h1, h2, h3, h4, .name{
 .be-left{
     
 }
+.non-task{
+    font-weight: 600;
+}
 .be-right{
     display: inline-flex;
     float: right;

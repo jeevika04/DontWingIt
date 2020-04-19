@@ -236,6 +236,11 @@ function applyColorScheme(colors){
     $(".testing").css("color", "rgb("+colors[3]+")");
     $(".design").css("background-color", "rgb("+lightc1+")");
     $(".development").css("background-color", "rgb("+lightc2+")");
+    $(".card").css("background-color", "inherit");
+    $(".btn-link").css("color", "inherit");
+    $("a").css("color", "inherit");
+    $(".card-header").css("background-color", "rgb("+lightc2+")");
+    $(".card-header").css("border", "1px solid rgb("+colors[2]+")");
     $(".testing").css("background-color", "rgb("+lightc3+")");
     $(".design-issue-reference").css("color", "rgb("+colors[1]+")");
     $(".testing-issue-reference").css("color", "rgb("+colors[3]+")");

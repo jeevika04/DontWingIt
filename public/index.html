@@ -71,7 +71,6 @@
 </script>
 <div class = "contain justify-content-center">
     <div class = "container-content">
-        <h1>Project Name</h1>
         <div class = "checklists">
             <div class = "checklist design">
                 <h3>Design</h3>
@@ -82,7 +81,7 @@
                         and write down any special features you or your users want implemented.
                     </div>
                     <div class = "ch-item">
-                        <label for = "why-failed-expert-testing">Add Specific Features</label>
+                        <label for = "why-failed-expert-testing" class = "non-task">Add Specific Features</label>
                         <br/>
                         <div class="input-group" id = "why-failed-expert-testing">
                             <input type="text" class="form-control" id = "design-text" placeholder="Feature" aria-label="Feature" aria-describedby="why-failed-expert-testing">
@@ -107,86 +106,97 @@
                         (https://www.w3.org/TR/WCAG21/#intro)
                     </div>
                     <div class = "wcag-filter-buttons-holder">
-                        <h4>Filter By Classification</h4>
-                        <input type="checkbox" aria-label="Show WCAG A-level Classifications" checked = "true" aria-checked="true" class = "item" id = "A-level">
+                        <h4 id = "filter">Filter By Classification</h4>
+                        <input type="checkbox" aria-label="Show WCAG A-level Classifications" checked = "true" aria-checked="true" class = "item" id = "A-level" aria-describedby="filter">
                         <label for = "A-level">A</label>   
-                        <input type="checkbox" aria-label="Show WCAG AA-level Classifications" class = "item" id = "AA-level">
+                        <input type="checkbox" aria-label="Show WCAG AA-level Classifications" class = "item" id = "AA-level" aria-describedby="filter">
                         <label for = "AA-level">AA</label>   
-                        <input type="checkbox" aria-label="Show WCAG AAA-level Classifications" class = "item" id = "AAA-level">
+                        <input type="checkbox" aria-label="Show WCAG AAA-level Classifications" class = "item" id = "AAA-level" aria-describedby="filter">
                         <label for = "AAA-level">AAA</label>   
                     </div>
-                    <div id="accordion">
-                        <div class="card">
-                          <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Percievable
-                              </button>
-                            </h5>
-                          </div>
-                      
-                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class = "ch-item">
-                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
-                                    <label for = "dev1" class = "dev-label">
-                                        1.1.1 Non-Text-Content
-                                    </label>    
-                                </div>            
+                    <div class = "row">
+                      <div class = "col-0">
+
+                      </div>
+                      <div class = "col-8">
+                        <div id="accordion">
+                          <div class="card">
+                            <div class="card-header" id="headingOne">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  Percievable <i class="fas fa-chevron-down"></i>
+                                </button>
+                              </h5>
+                            </div>
+                        
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                              <div class="card-body">
+                                  <div class = "ch-item">
+                                      <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                      <label for = "dev1" class = "dev-label">
+                                          1.1.1 Non-Text-Content
+                                      </label>    
+                                  </div>            
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="headingTwo">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Operable
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class = "ch-item">
-                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
-                                    <label for = "dev1">Make button</label>    
-                                </div>                            
+                          <div class="card">
+                            <div class="card-header" id="headingTwo">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  Operable <i class="fas fa-chevron-down"></i>
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                              <div class="card-body">
+                                  <div class = "ch-item">
+                                      <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                      <label for = "dev1">Make button</label>    
+                                  </div>                            
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="headingThree">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Understandable
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class = "ch-item">
-                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
-                                    <label for = "dev1">Make button</label>    
-                                </div>                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
+                          <div class="card">
                             <div class="card-header" id="headingThree">
                               <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                  Robust
+                                  Understandable <i class="fas fa-chevron-down"></i>
                                 </button>
                               </h5>
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                               <div class="card-body">
-                                <div class = "ch-item">
-                                    <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
-                                    <label for = "dev1">Make button</label>    
+                                  <div class = "ch-item">
+                                      <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                      <label for = "dev1">Make button</label>    
+                                  </div>                            </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                              <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Robust <i class="fas fa-chevron-down"></i>
+                                  </button>
+                                </h5>
+                              </div>
+                              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body">
+                                  <div class = "ch-item">
+                                      <input type="checkbox" aria-label="Dynamically add this" class = "item" id = "dev1">
+                                      <label for = "dev1">Make button</label>    
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                        </div>
                       </div>
+                      <div class = "col-3">
+
+                      </div>
+                    </div>
+                    
                     
                     
                     
