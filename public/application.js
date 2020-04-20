@@ -28,25 +28,34 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // Get a reference to the recommendations object of your Firebase.
   // Note: this doesn't exist yet. But when we write to our Firebase using
   // this reference, it will create this object for us!
-  var userRef = myFirebase.child('users');
+  var allUsersRef = myFirebase.child('users');
   // Push our first recommendation to the end of the list and assign it a
   // unique ID automatically.
-  userRef.child('jeevika').set({
-      features : [],
-      name : user.displayName,
-      points : 0, 
-      testing : {
-          automated : {
-              checked : false,
-              name : 'WebAIM'
-            }
-        },
-        wcag : {
-            checked : [ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ],
-            conf_level : [ "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable" ]
-        }
+  allUsersRef.once('value', function(snapshot) {
+    if (snapshot.hasChild(user.uid)) {
+      alert('exists');
     }
-  );
+    else {
+      allUsersRef.child(user.uid).set({
+        features : [],
+        name : user.displayName,
+        email : user.email,
+        points : 0, 
+        testing : {
+            automated : {
+                checked : false,
+                name : 'WebAIM'
+              }
+          },
+          wcag : {
+              checked : [ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ],
+              conf_level : [ "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable" ]
+          }
+      }
+    );
+    alert('created new user');
+    }
+  });
 
 }).catch(function(error) {
   // Handle Errors here.
@@ -57,4 +66,5 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
   // ...
+  console.log("erroroororor " + error);
 });

@@ -1,0 +1,62 @@
+{
+  "feature" : {
+    "checked" : false,
+    "feature_id" : "1",
+    "name" : "Test",
+    "type" : "Design",
+    "user_id" : "000000"
+  },
+  "user" : {
+    "email" : "jeevika04@gmail.com",
+    "features" : [ "feature_id" ],
+    "name" : "John Doe",
+    "points" : 100,
+    "testing" : {
+      "automated" : {
+        "checked" : false,
+        "name" : "WebAIM"
+      }
+    },
+    "user_id" : "000000",
+    "wcag" : {
+      "checked" : [ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ],
+      "conf_level" : [ "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable" ]
+    }
+  },
+  "users" : {
+    "-M5Exhw3WQKZlt4NNSxT" : {
+      "email" : "jeevika04@tamu.edu",
+      "name" : "Jeevika Jarmarwala",
+      "points" : 0,
+      "testing" : {
+        "automated" : {
+          "checked" : false,
+          "name" : "WebAIM"
+        }
+      },
+      "wcag" : {
+        "checked" : [ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ],
+        "conf_level" : [ "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable" ]
+      }
+    },
+    "jeevika" : {
+      "name" : "Suvedh Srikanth",
+      "points" : 0,
+      "testing" : {
+        "automated" : {
+          "checked" : false,
+          "name" : "WebAIM"
+        }
+      },
+      "wcag" : {
+        "checked" : [ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ],
+        "conf_level" : [ "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable" ]
+      }
+    }
+  },
+  "wcag_list" : {
+    "level" : [ "A", "A", "A", "A", "AA", "AA", "AAA", "AAA", "AAA", "AAA", "A", "A", "A", "AA", "AA", "AAA", "A", "A", "AA", "AA", "AA", "AAA", "AAA", "AAA", "AAA", "AA", "AA", "AA", "AA", "A", "A", "AAA", "A", "A", "A", "AAA", "AAA", "AAA", "AAA", "A", "AAA", "AAA", "A", "A", "A", "A", "AA", "AA", "AA", "AAA", "AAA", "AAA", "A", "A", "A", "A", "AAA", "AAA", "A", "AA", "AAA", "AAA", "AAA", "AAA", "A", "A", "AA", "AA", "AAA", "A", "A", "AA", "AA", "AAA", "AAA", "A", "A", "AA" ],
+    "list" : [ "1.1.1", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.3.1", "1.3.2", "1.3.3", "1.3.4", "1.3.5", "1.3.6", "1.4.1", "1.4.2", "1.4.3", "1.4.4", "1.4.5", "1.4.6", "1.4.7", "1.4.8", "1.4.9", "1.4.10", "1.4.11", "1.4.12", "1.4.13", "2.1.1", "2.1.2", "2.1.3", "2.1.4", "2.2.1", "2.2.2", "2.2.3", "2.2.4", "2.2.5", "2.2.6", "2.3.1", "2.3.2", "2.3.3", "2.4.1", "2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.4.8", "2.4.9", "2.4.10", "2.5.1", "2.5.2", "2.5.3", "2.5.4", "2.5.5", "2.5.6", "3.1.1", "3.1.2", "3.1.3", "3.1.4", "3.1.5", "3.1.6", "3.2.1", "3.2.2", "3.2.3", "3.2.4", "3.2.5", "3.3.1", "3.3.2", "3.3.3", "3.3.4", "3.3.5", "3.3.6", "4.1.1", "4.1.2", "4.1.3" ],
+    "name" : [ "Non-text Content", "Audio-only and Video-only (Prerecorded)", "Captions (Prerecorded)", "Audio Description or Media Alternative (Prerecorded)", "Captions (Prerecorded)", "Audio Description (Prerecorded)", "Sign Language (Prerecorded)", "Extended Audio Description (Prerecorded)", "Media Alternative (Prerecorded)", "Audio-only (Live)", "Info and Relationships", "Meaningful Sequence", "Sensory Characteristics", "Orientation", "Identify Input Purpose", "Identify Purpose", "Use of Color", "Audio Control", "Contrast (Minimum)", "Resize Text", "Images of Text", "Contrast (Enhanced)", "Low or No Background Audio", "Visual Presentation", "Images of Text (No Exception)", "Reflow", "Non-text Contrast", "Text Spacing", "Content on Hover or Focus", "Keyboard", "No Keyboard Trap", "Keyboard (No Exception)", "Character Key Shortcuts", "Timing Adjustable", "Pause, Stop, Hide", "No timing", "Interruptions", "Re-authenticating", "Timeouts", "Three flashes or below threshold", "Three Flashes", "Animation form Interactions", "Bypass Blocks", "Page Titled", "Focus Order", "Link Purpose (In context)", "Multiple Ways", "Headings and Labels", "Focus Visible", "Location", "Link Purpose (Link Only)", "Section Headings", "Pointer Gestures", "Pointer Cancellation", "Label in Name", "Motion Actuation", "Target Size", "Concurrent Input Mechanisms", "Language of Page", "Language of Parts", "Unusual Words", "Abbreviations", "Reading Level", "Pronunciation", "On Focus", "On Input", "Consistent Navigation", "Consisitent Identification", "Change of Request", "Error Identification", "Labels of Instructions", "Error Suggestion", "Error Prevention (Legal/Financial/Data)", "Help", "Error Prevention", "Parsing", "Name, Role, Value", "Status Messages" ]
+  }
+}
