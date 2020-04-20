@@ -653,7 +653,7 @@ function calculateScore() {
                 score += 0.5;
                 count++;
             }
-            else if (val == 2) {
+            else if (val == 2 || val == 0) {
                 count++;
             }
         }
