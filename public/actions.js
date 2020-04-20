@@ -475,6 +475,7 @@ function addWcagItem(dest, content, listItem){
     console.log("appended" + item);
 }
 
+
 function addDesignToDevelopmentAndTesting(){
     addDesignToDevelopment();
     addDesignToTesting();
@@ -537,6 +538,13 @@ $(document).ready(function() {
     $('#go-to-dwi').on('click', ()=>{
         goToDWI();
     });
+
+    $(document).on('change', '.wcag-item', function () {
+        //var selectedText = $(this).find("option:selected").text();
+        var selectedText = $(this).is(':checked');
+        console.log(selectedText);
+    });
+
     /*
     $(".circle").click(()=>{
         var l = 0;
