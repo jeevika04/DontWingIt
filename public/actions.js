@@ -19,6 +19,7 @@ var colorScheme = generateQuadColorScheme(s_c);
 console.log("color scheme: "+colorScheme);
 var testing_count = 0;
 var design_count = 0;
+var total_score = 0;
 var get_expert_testing_issues_html = 
 '<div id = "get-expert-issues">'+
     '<label for = "why-failed-expert-testing">Which issues did you find during expert testing?</label>'+
@@ -519,6 +520,33 @@ function goToDWI(){
 function goToAbout(){
     window.location = "about.html"
 }
+function calculateScore() {
+    var myFirebase = firebase.database().ref();
+    var allUsersRef = myFirebase.child('users');
+    var userId = firebase.auth().currentUser.uid;
+    var list = allUsersRef.child(userId).child("wcag").child("conf_level");
+    list.once("value").then(function(snapshot) {
+        var score = 0;
+        var count = 0;
+        for(var i = 0; i < 78; i++) {
+            var val = snapshot.child(i).val();
+            if(val == 4) {
+                score++;
+                count++;
+            }
+            else if (val == 3) {
+                score += 0.5;
+                count++;
+            }
+            else if (val == 2) {
+                count++;
+            }
+        }
+        total_score = 100.0 * score / count;
+        $("#points").val(total_score);
+        console.log("update score " + total_score);
+    });
+}
 
 $(document).ready(function() {
     applyColorScheme(colorScheme);
@@ -582,10 +610,11 @@ $(document).ready(function() {
                     var index = i.toString();
                     allUsersRef.child(userId).child('wcag').child('conf_level').child(index).set(
                         parseInt(selectedText)
-                    );       
+                    );
                 }
             }
         });
+        calculateScore();
     });
 
     /*

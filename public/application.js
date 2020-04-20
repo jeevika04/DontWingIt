@@ -25,6 +25,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   var token = result.credential.accessToken;
   // The signed-in user info.
   var user = result.user;
+  $("#name").val(user.displayName);
   // Get a reference to the recommendations object of your Firebase.
   // Note: this doesn't exist yet. But when we write to our Firebase using
   // this reference, it will create this object for us!
@@ -32,7 +33,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // Push our first recommendation to the end of the list and assign it a
   // unique ID automatically.
   allUsersRef.once('value', function(snapshot) {
-    if (snapshot.hasChild(user.uid)) {
+    if(snapshot.hasChild(user.uid)) {
       //make data persist on screen
       var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("conf_level");
       confLevelRef.once("value").then(function(snapshot) {
@@ -46,7 +47,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
         features : [],
         name : user.displayName,
         email : user.email,
-        points : 0, 
+        points : 100,
         testing : {
             automated : {
                 checked : false,
