@@ -523,6 +523,7 @@ function calculateScore() {
         }
         total_score = 100.0 * score / count;
         $("#points").val(total_score);
+        console.log("update score " + total_score);
     });
 }
 
