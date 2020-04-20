@@ -466,7 +466,7 @@ function clearDesignField(){
 
 function addWcagItem(dest, content, listItem){
     var item = '<div class = "ch-item">' +
-            '<input type="checkbox" aria-label="' + content + '" class = "wcag-item" checked = "false" id = "' + listItem + '">' +
+            '<input type="checkbox" aria-label="' + content + '" class = "wcag-item" id = "' + listItem + '">' +
             '<label for = "' + listItem + '" class = "dev-label">' +
             listItem + ": " + content +
         '</label>' +
@@ -507,10 +507,10 @@ $(document).ready(function() {
                 console.error("something wrong !!");
             }
             addWcagItem(dest, name[i], list[i]);
+            // console.log($('.wcag-item').eq(i));
         }
     });
 
-    // $(".wcag-item").eq(0).prop("checked", true);
 
     $('#failed-expert').on('click', ()=>{
         displayGetExpertIssues();

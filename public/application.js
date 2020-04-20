@@ -36,9 +36,8 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
       //make data persist on screen
       var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("checked");
       confLevelRef.once("value").then(function(snapshot) {
-        for(var i = 0; i < snapshot.numChildren(); i++) {
-          console.log(snapshot.child(i).val());
-          // $('wcag-item').eq(i).prop("checked",snapshot.child(i).val());
+        for(var i = 0; i < 78; i++) {
+          $('.wcag-item').eq(i).prop("checked", snapshot.child(i).val());
         }
       });
     }
