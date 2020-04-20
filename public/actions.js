@@ -464,7 +464,7 @@ function clearDesignField(){
     $("#design-text").val("");
 }
 
-function addWcagItem(dest, content, listItem){
+function addWcagItem(dest, content, listItem, lev){
     var item = 
     `<div class = "ch-item">
         <div class = "row">
@@ -478,7 +478,7 @@ function addWcagItem(dest, content, listItem){
                 </select>
             </div>
             <div class = "col-10">`+
-                listItem + ": " + content +
+                listItem + ": " + content + ", Level " + lev +
             `</div>
         </div>
     </div>`
@@ -517,7 +517,7 @@ $(document).ready(function() {
             }else {
                 console.error("something wrong !!");
             }
-            addWcagItem(dest, name[i], list[i]);
+            addWcagItem(dest, name[i], list[i], level[i]);
         }
     });
 
