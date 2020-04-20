@@ -465,14 +465,26 @@ function clearDesignField(){
 }
 
 function addWcagItem(dest, content, listItem){
-    var item = '<div class = "ch-item">' +
-            '<input type="checkbox" aria-label="' + content + '" class = "wcag-item" id = "' + listItem + '">' +
-            '<label for = "' + listItem + '" class = "dev-label">' +
-            listItem + ": " + content +
-        '</label>' +
-    '</div>';
+    var item = 
+    `<div class = "ch-item">
+        <div class = "row">
+            <div class = "col-2">
+                <select class="wcag-select" id="`+listItem+`">
+                    <option selected value = "0">Not Evaluated</option>
+                    <option value="1">Not Applicable</option>
+                    <option value="2">Does Not Support</option>
+                    <option value="3">Partially Supports</option>
+                    <option value="4">Supports</option>
+                </select>
+            </div>
+            <div class = "col-10">`+
+                listItem + ": " + content +
+            `</div>
+        </div>
+    </div>`
     $("#" + dest).append(item);
 }
+
 
 function addDesignToDevelopmentAndTesting(){
     addDesignToDevelopment();
@@ -495,19 +507,16 @@ $(document).ready(function() {
         for(var i = 0; i < level.length; i++) {
             if(list[i][0] == "1") {
                 dest = "percievable";
-            }
-            else if(list[i][0] == "2") {
+            }else if(list[i][0] == "2") {
                 dest = "operable";
             }else if(list[i][0] == "3") {
                 dest = "understandable";
             }else if(list[i][0] == "4") {
                 dest = "robust";
-            }
-            else {
+            }else {
                 console.error("something wrong !!");
             }
             addWcagItem(dest, name[i], list[i]);
-            // console.log($('.wcag-item').eq(i));
         }
     });
 
@@ -538,6 +547,14 @@ $(document).ready(function() {
     $('#go-to-dwi').on('click', ()=>{
         goToDWI();
     });
+
+    $(document).on('change', '.wcag-item', function () {
+        //var selectedText = $(this).find("option:selected").text();
+        var selectedText = $(this).is(':checked');
+        var selectedID = $(this).attr("id");
+        console.log(selectedID);
+    });
+
     /*
     $(".circle").click(()=>{
         var l = 0;

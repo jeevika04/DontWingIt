@@ -34,10 +34,10 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   allUsersRef.once('value', function(snapshot) {
     if (snapshot.hasChild(user.uid)) {
       //make data persist on screen
-      var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("checked");
+      var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("conf_level");
       confLevelRef.once("value").then(function(snapshot) {
         for(var i = 0; i < 78; i++) {
-          $('.wcag-item').eq(i).prop("checked", snapshot.child(i).val());
+          $('.wcag-select').eq(i).val(snapshot.child(i).val());
         }
       });
     }
@@ -54,8 +54,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
               }
           },
           wcag : {
-              checked : [ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ],
-              conf_level : [ "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable", "Acceptable", "Not applicable" ]
+              conf_level : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
           }
       }
     );
