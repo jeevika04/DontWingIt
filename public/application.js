@@ -34,7 +34,13 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   allUsersRef.once('value', function(snapshot) {
     if (snapshot.hasChild(user.uid)) {
       //make data persist on screen
-      
+      var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("checked");
+      confLevelRef.once("value").then(function(snapshot) {
+        for(var i = 0; i < snapshot.numChildren(); i++) {
+          console.log(snapshot.child(i).val());
+          // $('wcag-item').eq(i).prop("checked",snapshot.child(i).val());
+        }
+      });
     }
     else {
       allUsersRef.child(user.uid).set({
@@ -54,7 +60,6 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
           }
       }
     );
-    alert('created new user');
     }
   });
 
@@ -67,5 +72,5 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
   // ...
-  console.log("erroroororor " + error);
+  console.log(error);
 });

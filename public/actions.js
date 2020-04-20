@@ -466,13 +466,12 @@ function clearDesignField(){
 
 function addWcagItem(dest, content, listItem){
     var item = '<div class = "ch-item">' +
-            '<input type="checkbox" aria-label="' + content + '" class = "item" id = "' + listItem + '">' +
+            '<input type="checkbox" aria-label="' + content + '" class = "wcag-item" checked = "false" id = "' + listItem + '">' +
             '<label for = "' + listItem + '" class = "dev-label">' +
             listItem + ": " + content +
         '</label>' +
     '</div>';
     $("#" + dest).append(item);
-    console.log("appended" + item);
 }
 
 
@@ -511,6 +510,8 @@ $(document).ready(function() {
             addWcagItem(dest, name[i], list[i]);
         }
     });
+
+    // $(".wcag-item").eq(0).prop("checked", true);
 
     $('#failed-expert').on('click', ()=>{
         displayGetExpertIssues();
