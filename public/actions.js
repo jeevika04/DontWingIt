@@ -497,6 +497,7 @@ function goToDWI(){
 function goToAbout(){
     window.location = "about.html"
 }
+
 $(document).ready(function() {
     applyColorScheme(colorScheme);
     var dest = "";
@@ -549,11 +550,26 @@ $(document).ready(function() {
         goToDWI();
     });
 
-    $(document).on('change', '.wcag-item', function () {
-        //var selectedText = $(this).find("option:selected").text();
-        var selectedText = $(this).is(':checked');
+    $(document).on('change', '.custom-select', function () {
+        var selectedText = $(this).find("option:selected").text();
+        //var selectedText = $(this).is(':checked');
         var selectedID = $(this).attr("id");
-        console.log(selectedID);
+        $.getJSON("dontwingit-export.json", function(json) {
+            var myFirebase = firebase.database().ref();
+            var allUsersRef = myFirebase.child('users');
+            var userId = firebase.auth().currentUser.uid;
+            console.log(userId);
+            var list = json.wcag_list.list;
+            for(var i = 0; i < list.length; i++) {
+                if(list[i] == selectedID) {
+                    console.log(i);
+                    var index = i.toString();
+                    allUsersRef.child(userId).child('wcag').child('conf_level').child(index).set({
+                        selectedText
+                    });       
+                }
+            }
+        });
     });
 
     /*
