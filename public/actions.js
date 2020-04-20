@@ -465,6 +465,7 @@ function clearDesignField(){
 }
 
 function addWcagItem(dest, content, listItem){
+<<<<<<< HEAD
     var item = 
     `<div class = "ch-item">
         <div class = "row">
@@ -482,9 +483,17 @@ function addWcagItem(dest, content, listItem){
             `</div>
         </div>
     </div>`
+=======
+    var item = '<div class = "ch-item">' +
+            '<input type="checkbox" aria-label="' + content + '" class = "wcag-item" checked = "false" id = "' + listItem + '">' +
+            '<label for = "' + listItem + '" class = "dev-label">' +
+            listItem + ": " + content +
+        '</label>' +
+    '</div>';
+>>>>>>> cbf959d85420f039ac0a1595150c8db9bfc99aa7
     $("#" + dest).append(item);
-    console.log("appended" + item);
 }
+
 
 function addDesignToDevelopmentAndTesting(){
     addDesignToDevelopment();
@@ -522,6 +531,8 @@ $(document).ready(function() {
         }
     });
 
+    // $(".wcag-item").eq(0).prop("checked", true);
+
     $('#failed-expert').on('click', ()=>{
         displayGetExpertIssues();
     });
@@ -548,6 +559,13 @@ $(document).ready(function() {
     $('#go-to-dwi').on('click', ()=>{
         goToDWI();
     });
+
+    $(document).on('change', '.wcag-item', function () {
+        //var selectedText = $(this).find("option:selected").text();
+        var selectedText = $(this).is(':checked');
+        console.log(selectedText);
+    });
+
     /*
     $(".circle").click(()=>{
         var l = 0;
