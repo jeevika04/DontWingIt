@@ -113,7 +113,6 @@ h1, h2, h3, h4, .name{
 .container-content{
     /*padding: 10px;*/
     
-    
 }
 .checklist{
     padding: 10px;
@@ -132,7 +131,7 @@ h1, h2, h3, h4, .name{
 }
 */
 .ch-item{
-    
+    margin-bottom: 5px;
 }
 .expl{
     padding: 0;
@@ -147,7 +146,15 @@ h1, h2, h3, h4, .name{
     padding: 5px;
     margin-right: 5px;
     border-left: 2px solid;
+    min-width: 5ch;
+    width: fit-content;
+    text-align: center;
 }
+
+.inline {
+    display: inline-block;
+}
+
 .dev-label{
     display: inline-flex;
     align-items: center;
