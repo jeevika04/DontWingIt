@@ -465,12 +465,23 @@ function clearDesignField(){
 }
 
 function addWcagItem(dest, content, listItem){
-    var item = '<div class = "ch-item">' +
-            '<input type="checkbox" aria-label="' + content + '" class = "wcag-item" checked = "false" id = "' + listItem + '">' +
-            '<label for = "' + listItem + '" class = "dev-label">' +
-            listItem + ": " + content +
-        '</label>' +
-    '</div>';
+    var item = 
+    `<div class = "ch-item">
+        <div class = "row">
+            <div class = "col-2">
+                <select class="custom-select" id="`+listItem+`">
+                    <option selected value = "1">Not Evaluated</option>
+                    <option value="1">Not Applicable</option>
+                    <option value="2">Does Not Support</option>
+                    <option value="3">Partially Supports</option>
+                    <option value="4">Supports</option>
+                </select>
+            </div>
+            <div class = "col-10">`+
+                listItem + ": " + content +
+            `</div>
+        </div>
+    </div>`
     $("#" + dest).append(item);
 }
 
