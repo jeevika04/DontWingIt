@@ -549,8 +549,8 @@ $(document).ready(function() {
         goToDWI();
     });
 
-    $(document).on('change', '.custom-select', function () {
-        var selectedText = $(this).find("option:selected").text();
+    $(document).on('change', '.wcag-select', function () {
+        var selectedText = $(this).val();
         //var selectedText = $(this).is(':checked');
         var selectedID = $(this).attr("id");
         $.getJSON("dontwingit-export.json", function(json) {
@@ -563,9 +563,9 @@ $(document).ready(function() {
                 if(list[i] == selectedID) {
                     console.log(i);
                     var index = i.toString();
-                    allUsersRef.child(userId).child('wcag').child('conf_level').child(index).set({
-                        selectedText
-                    });       
+                    allUsersRef.child(userId).child('wcag').child('conf_level').child(index).set(
+                        parseInt(selectedText)
+                    );       
                 }
             }
         });
