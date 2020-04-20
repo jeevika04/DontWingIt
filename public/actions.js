@@ -11,9 +11,9 @@ class ColorScheme{
     }
     
 };
-var myFirebase = firebase.database().ref();
-var allUsersRef = myFirebase.child('users');
-var userId = firebase.auth().currentUser.uid;
+var myFirebase = null;
+var allUsersRef = null;
+var userId = null;
 var s_c = [0, 83, 102];
 var colorScheme = generateQuadColorScheme(s_c);
 console.log("color scheme: "+colorScheme);
@@ -550,6 +550,7 @@ function calculateScore() {
 }
 
 $(document).ready(function() {
+    
     applyColorScheme(colorScheme);
     var dest = "";
     $.getJSON("dontwingit-export.json", function(json) {
@@ -602,6 +603,9 @@ $(document).ready(function() {
 
     $(document).on('change', '.wcag-select', function () {
         var selectedText = $(this).val();
+        myFirebase = firebase.database().ref();
+        allUsersRef = myFirebase.child('users');
+        userId = firebase.auth().currentUser.uid;
         //var selectedText = $(this).is(':checked');
         var selectedID = $(this).attr("id");
         $.getJSON("dontwingit-export.json", function(json) {
