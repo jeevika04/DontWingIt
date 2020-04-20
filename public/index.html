@@ -60,16 +60,6 @@
         </div>
     </div>
 </div>
-<script>
-  var playersRef = firebase.database().ref("users/");
-
-  playersRef.on("child_added", function(data, prevChildKey) {
-    var newPlayer = data.val();
-    document.getElementById("name").innerHTML = newPlayer.name;
-    document.getElementById("points").innerHTML =  newPlayer.points;
-  });
-
-</script>
 <div class = "contain justify-content-center">
     <div class = "container-content">
         <div class = "checklists">

@@ -25,7 +25,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   var token = result.credential.accessToken;
   // The signed-in user info.
   var user = result.user;
-  $("#name").val(user.displayName);
+  $("#name").text(user.displayName);
   // Get a reference to the recommendations object of your Firebase.
   // Note: this doesn't exist yet. But when we write to our Firebase using
   // this reference, it will create this object for us!
@@ -34,6 +34,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // unique ID automatically.
   allUsersRef.once('value', function(snapshot) {
     if(snapshot.hasChild(user.uid)) {
+      $("#points").text(snapshot.child(user.uid).child("points").val().toString().substring(0,4));
       //make data persist on screen
       var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("conf_level");
       confLevelRef.once("value").then(function(snapshot) {
@@ -47,7 +48,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
         features : [],
         name : user.displayName,
         email : user.email,
-        points : 100,
+        points : 0,
         testing : {
             automated : {
                 checked : false,
