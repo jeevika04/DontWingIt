@@ -61,14 +61,14 @@ function generateDevelopmentDesignChecklistItem(content){
     var id = "devdes"+design_count;
     var development_design_checklist_item_html = 
     '<div class = "ch-item">'+
-        `<select class="item" id="`+id+`" aria-label="'+content+'">
+        `<select class="item" id="`+content+`" aria-label="`+content+`">
         <option selected value = "0">Not Evaluated</option>
         <option value="1">Not Applicable</option>
         <option value="2">Does Not Support</option>
         <option value="3">Partially Supports</option>
         <option value="4">Supports</option>
         </select>`+
-        '<label for = "'+id+'" class = "dev-label">'+
+        '<label for = "'+content+'" class = "dev-label">'+
             '<div class = "design-issue-reference reference">'+
                 'Design'+
             '</div>'+
@@ -82,7 +82,7 @@ function generateDevelopmentDesignChecklistItemNoReference(content){
     var id = "devdes"+design_count;
     var development_design_checklist_item_no_html = 
     '<div class = "ch-item">'+
-        `<select class="item" id="`+id+`" aria-label="'+content+'">
+        `<select class="item" id="`+id+`" aria-label="`+content+`">
         <option selected value = "0">Not Evaluated</option>
         <option value="1">Not Applicable</option>
         <option value="2">Does Not Support</option>
@@ -128,7 +128,13 @@ function generateDevelopmentExpertTestingChecklistItem(content, severity){
     }
     var development_expert_checklist_item_html = 
     '<div class = "ch-item">'+
-        '<input type="checkbox" aria-label="'+content+'" class = "item" id = "'+id+'">'+
+        `<select class="item expert-select" id="`+id+`" aria-label="'+content+'">
+        <option selected value = "0">Not Evaluated</option>
+        <option value="1">Not Applicable</option>
+        <option value="2">Does Not Support</option>
+        <option value="3">Partially Supports</option>
+        <option value="4">Supports</option>
+        </select>`+
         '<label for = "'+id+'" class = "dev-label">'+
             '<div class = "testing-issue-reference reference">'+
                 'Expert Testing'+
@@ -168,7 +174,13 @@ function generateDevelopmentUserTestingChecklistItem(content, severity){
     }
     var development_user_checklist_item_html = 
     '<div class = "ch-item">'+
-        '<input type="checkbox" aria-label="'+content+'" class = "item" id = "'+id+'">'+
+        `<select class="item user-select" id="`+id+`" aria-label="'+content+'">
+        <option selected value = "0">Not Evaluated</option>
+        <option value="1">Not Applicable</option>
+        <option value="2">Does Not Support</option>
+        <option value="3">Partially Supports</option>
+        <option value="4">Supports</option>
+        </select>`+
         '<label for = "'+id+'" class = "dev-label">'+
             '<div class = "testing-issue-reference reference">'+
                 'User Testing'+
@@ -484,7 +496,9 @@ function getExpertIssue(){
 function clearDesignField(){
     $("#design-text").val("");
 }
-
+function writeUserIssueData(cont, sev){
+    myFirebase.child('users').child('features').set({cont: {content: cont, origin: "User Testing", severity: sev}});
+}
 function addWcagItem(dest, content, listItem, level){
     var item = 
     `<div class = "ch-item">
@@ -600,7 +614,24 @@ $(document).ready(function() {
     $('#go-to-dwi').on('click', ()=>{
         goToDWI();
     });
-
+    $(document).on('change', '.user-select', function () {
+        var selectedText = $(this).val();
+    
+        myFirebase = firebase.database().ref();
+        allUsersRef = myFirebase.child('users');
+        userId = firebase.auth().currentUser.uid;
+        //var selectedText = $(this).is(':checked');
+        var selectedID = $(this).attr("id");
+        //$.getJSON("dontwingit-export.json", function(json) {
+          
+        allUsersRef.child(userId).child('features').child(selectedID).update(
+            {state: selectedText}
+        );
+                
+        //});
+        calculateScore();
+    });
+    
     $(document).on('change', '.wcag-select', function () {
         var selectedText = $(this).val();
         myFirebase = firebase.database().ref();
