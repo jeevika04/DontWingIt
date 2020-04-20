@@ -147,7 +147,7 @@ function generateDevelopmentExpertTestingChecklistItem(content, severity){
     return development_expert_checklist_item_html;
 }
 function generateDevelopmentUserTestingChecklistItem(content, severity){
-    var id = "devtest"+testing_count;
+    var id = content;
     var sev_str = "";
     console.log(severity);
     if(severity == "1"){
