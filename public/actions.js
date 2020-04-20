@@ -58,11 +58,18 @@ function generateDevelopmentDesignChecklistItem(content){
     var id = "devdes"+design_count;
     var development_design_checklist_item_html = 
     '<div class = "ch-item">'+
-        '<input type="checkbox" aria-label="'+content+'" class = "item" id = "'+id+'">'+
+        `<select class="item" id="`+id+`" aria-label="'+content+'">
+        <option selected value = "0">Not Evaluated</option>
+        <option value="1">Not Applicable</option>
+        <option value="2">Does Not Support</option>
+        <option value="3">Partially Supports</option>
+        <option value="4">Supports</option>
+        </select>`+
         '<label for = "'+id+'" class = "dev-label">'+
             '<div class = "design-issue-reference reference">'+
                 'Design'+
             '</div>'+
+            
             '<div>'+content+'</div>'+
         '</label>'+
     '</div>';
@@ -72,9 +79,19 @@ function generateDevelopmentDesignChecklistItemNoReference(content){
     var id = "devdes"+design_count;
     var development_design_checklist_item_no_html = 
     '<div class = "ch-item">'+
-        '<input type="checkbox" aria-label="'+content+'" class = "item" id = "'+id+'">'+
+        `<select class="item" id="`+id+`" aria-label="'+content+'">
+        <option selected value = "0">Not Evaluated</option>
+        <option value="1">Not Applicable</option>
+        <option value="2">Does Not Support</option>
+        <option value="3">Partially Supports</option>
+        <option value="4">Supports</option>
+        </select>`+
         '<label for = "'+id+'" class = "dev-label">'+
-            content
+            '<div class = "design-issue-reference reference">'+
+                'Design'+
+            '</div>'+
+            
+            '<div>'+content+'</div>'+
         '</label>'+
     '</div>';
     console.log("s f", development_design_checklist_item_no_html);
@@ -490,9 +507,10 @@ function addWcagItem(dest, content, listItem, level){
 
 function addDesignToDevelopmentAndTesting(){
     addDesignToDevelopment();
-    addDesignToTesting();
+    //addDesignToTesting();
     clearDesignField();
 }
+
 function goToDWI(){
     window.location = "index.html"
 }
