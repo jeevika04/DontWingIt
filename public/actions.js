@@ -469,8 +469,8 @@ function addWcagItem(dest, content, listItem){
     `<div class = "ch-item">
         <div class = "row">
             <div class = "col-2">
-                <select class="custom-select" id="`+listItem+`">
-                    <option selected value = "1">Not Evaluated</option>
+                <select class="wcag-select" id="`+listItem+`">
+                    <option selected value = "0">Not Evaluated</option>
                     <option value="1">Not Applicable</option>
                     <option value="2">Does Not Support</option>
                     <option value="3">Partially Supports</option>
@@ -521,7 +521,6 @@ $(document).ready(function() {
         }
     });
 
-    // $(".wcag-item").eq(0).prop("checked", true);
 
     $('#failed-expert').on('click', ()=>{
         displayGetExpertIssues();
