@@ -33,7 +33,8 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // unique ID automatically.
   allUsersRef.once('value', function(snapshot) {
     if (snapshot.hasChild(user.uid)) {
-      alert('exists');
+      //make data persist on screen
+      
     }
     else {
       allUsersRef.child(user.uid).set({

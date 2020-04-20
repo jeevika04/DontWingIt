@@ -31,7 +31,7 @@ var get_expert_testing_issues_html =
             '<button class="btn btn-primary" type="button" id = "add-expert-issue">Add</button>'+
             '<button class="btn btn-secondary" type="button" id = "done-adding-expert-issues">Done</button>'+
         '</div>'+
-    '</div>';
+    '</div>' +
 '</div>';
 var get_user_testing_issues_html = 
 '<div id = "get-user-issues">'+
@@ -48,8 +48,10 @@ var get_user_testing_issues_html =
             '<button class="btn btn-primary" type="button" id = "add-user-issue">Add</button>'+
             '<button class="btn btn-secondary" type="button" id = "done-adding-user-issues">Done</button>'+
         '</div>'+
-    '</div>';
+    '</div>' + 
 '</div>';
+
+
 
 function generateDevelopmentDesignChecklistItem(content){
     var id = "devdes"+design_count;
@@ -462,6 +464,16 @@ function clearDesignField(){
     $("#design-text").val("");
 }
 
+function addWcagItem(dest, content, listItem){
+    var item = '<div class = "ch-item">' +
+            '<input type="checkbox" aria-label="' + content + '" class = "item" id = "' + listItem + '">' +
+            '<label for = "' + listItem + '" class = "dev-label">' +
+            listItem + ": " + content +
+        '</label>' +
+    '</div>';
+    $("#" + dest).append(item);
+    console.log("appended" + item);
+}
 
 function addDesignToDevelopmentAndTesting(){
     addDesignToDevelopment();
@@ -474,8 +486,31 @@ function goToDWI(){
 function goToAbout(){
     window.location = "about.html"
 }
-$(document).ready(function(){
+$(document).ready(function() {
     applyColorScheme(colorScheme);
+    var dest = "";
+    $.getJSON("dontwingit-export.json", function(json) {
+        var level = json.wcag_list.level;
+        var list = json.wcag_list.list;
+        var name = json.wcag_list.name;
+        for(var i = 0; i < level.length; i++) {
+            if(list[i][0] == "1") {
+                dest = "percievable";
+            }
+            else if(list[i][0] == "2") {
+                dest = "operable";
+            }else if(list[i][0] == "3") {
+                dest = "understandable";
+            }else if(list[i][0] == "4") {
+                dest = "robust";
+            }
+            else {
+                console.error("something wrong !!");
+            }
+            addWcagItem(dest, name[i], list[i]);
+        }
+    });
+
     $('#failed-expert').on('click', ()=>{
         displayGetExpertIssues();
     });
