@@ -496,15 +496,13 @@ $(document).ready(function() {
         for(var i = 0; i < level.length; i++) {
             if(list[i][0] == "1") {
                 dest = "percievable";
-            }
-            else if(list[i][0] == "2") {
+            }else if(list[i][0] == "2") {
                 dest = "operable";
             }else if(list[i][0] == "3") {
                 dest = "understandable";
             }else if(list[i][0] == "4") {
                 dest = "robust";
-            }
-            else {
+            }else {
                 console.error("something wrong !!");
             }
             addWcagItem(dest, name[i], list[i]);
@@ -543,7 +541,8 @@ $(document).ready(function() {
     $(document).on('change', '.wcag-item', function () {
         //var selectedText = $(this).find("option:selected").text();
         var selectedText = $(this).is(':checked');
-        console.log(selectedText);
+        var selectedID = $(this).attr("id");
+        console.log(selectedID);
     });
 
     /*
