@@ -58,10 +58,10 @@ var get_user_testing_issues_html =
 
 
 function generateDevelopmentDesignChecklistItem(content){
-    var id = "devdes"+design_count;
+    //var id = "devdes"+design_count;
     var development_design_checklist_item_html = 
     '<div class = "ch-item">'+
-        `<select class="item" id="`+content+`" aria-label="`+content+`">
+        `<select class="item design-select" id="`+content+`" aria-label="`+content+`">
         <option selected value = "0">Not Evaluated</option>
         <option value="1">Not Applicable</option>
         <option value="2">Does Not Support</option>
@@ -78,30 +78,9 @@ function generateDevelopmentDesignChecklistItem(content){
     '</div>';
     return development_design_checklist_item_html;
 }
-function generateDevelopmentDesignChecklistItemNoReference(content){
-    var id = "devdes"+design_count;
-    var development_design_checklist_item_no_html = 
-    '<div class = "ch-item">'+
-        `<select class="item" id="`+id+`" aria-label="`+content+`">
-        <option selected value = "0">Not Evaluated</option>
-        <option value="1">Not Applicable</option>
-        <option value="2">Does Not Support</option>
-        <option value="3">Partially Supports</option>
-        <option value="4">Supports</option>
-        </select>`+
-        '<label for = "'+id+'" class = "dev-label">'+
-            '<div class = "design-issue-reference reference">'+
-                'Design'+
-            '</div>'+
-            
-            '<div>'+content+'</div>'+
-        '</label>'+
-    '</div>';
-    console.log("s f", development_design_checklist_item_no_html);
-    return development_design_checklist_item_no_html;
-}
+
 function generateDevelopmentExpertTestingChecklistItem(content, severity){
-    var id = "devtest"+testing_count;
+    var id = content;
     var sev_str = "";
     console.log(severity);
     if(severity == "1"){
@@ -146,6 +125,94 @@ function generateDevelopmentExpertTestingChecklistItem(content, severity){
     console.log(development_expert_checklist_item_html);
     return development_expert_checklist_item_html;
 }
+function postFeature(content, origin, severity, state){
+    var destination = ".show-development-issues-slot";
+    var class_name = "";
+    var reference_class = "";
+    if(origin == "User Testing"){
+        class_name = "user-select";
+        reference_class = "testing-issue-reference";
+    }
+    else if(origin == "Expert Testing"){
+        class_name = "expert-select";
+        reference_class = "testing-issue-reference";
+    }
+    else if(origin == "Design") {
+        class_name = "design-select";
+        reference_class = "design-issue-reference";
+    }
+    else {
+        console.error("postFeature origin is not one of three");
+    }
+    var id = content;
+    var sev_str = "";
+    console.log(severity);
+    if(severity == "1"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="far fa-frown-open"></i> Minor'+
+        '</div>'
+    }
+    else if(severity == "2"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="far fa-sad-cry"></i> Serious'+
+        '</div>'
+    }
+    else if(severity == "3"){
+        sev_str = 
+        '<div class = "reference">'+
+            '<i class="fas fa-radiation"></i> Catastrophic'+
+        '</div>'
+    }
+    else {
+        //no severity selected
+        console.log("user did not pick a severity");
+    }
+    var nesel = "", nasel = "", dnssel = "", pssel = "", ssel = "";
+    console.log("STATE", state);
+    if(state == "0"){
+        nesel = "selected ";
+    }
+    else if(state == "1"){
+        nasel = "selected ";
+    }
+    else if(state == "2"){
+        dnssel = "selected ";
+    }
+    else if(state == "3"){
+        console.log("state is three");
+        pssel = "selected ";
+    }
+    else if(state == "4"){
+        ssel = "selected ";
+    }
+    else {
+        console.error("state not one of possible states");
+    }
+    console.log("SELECTED MODIFIERS");
+    console.log(nesel, nasel, dnssel, pssel ,ssel);
+    var development_item_html = 
+    '<div class = "ch-item">'+
+        `<select class="item ` + class_name + `" id="`+id+`" aria-label="`+id+`">
+        <option `+nesel+` value="0">Not Evaluated</option>
+        <option `+nasel+`value="1">Not Applicable</option>
+        <option `+dnssel+`value="2">Does Not Support</option>
+        <option `+pssel+`value="3">Partially Supports</option>
+        <option `+ssel+`value="4">Supports</option>
+        </select>`+
+        '<label for = "'+id+'" class = "dev-label">'+
+            '<div class = "'+reference_class+' reference">'+
+                origin+
+            '</div>'+
+            sev_str+
+            content+
+        '</label>'+
+    '</div>';
+    console.log("made this: ", development_item_html);
+    $(".show-development-issues-slot").append(development_item_html);
+    applyColorScheme(colorScheme);
+}
 function generateDevelopmentUserTestingChecklistItem(content, severity){
     var id = content;
     var sev_str = "";
@@ -174,7 +241,7 @@ function generateDevelopmentUserTestingChecklistItem(content, severity){
     }
     var development_user_checklist_item_html = 
     '<div class = "ch-item">'+
-        `<select class="item user-select" id="`+id+`" aria-label="'+content+'">
+        `<select class="item user-select" id="`+id+`" aria-label="`+id+`">
         <option selected value = "0">Not Evaluated</option>
         <option value="1">Not Applicable</option>
         <option value="2">Does Not Support</option>
@@ -469,6 +536,16 @@ function addExpertIssueToDevelopment(){
 function getDesignTask(){
     var design_text = $("#design-text").val();
     console.log("design task:"+design_text);
+    myFirebase = firebase.database().ref();
+    allUsersRef = myFirebase.child('users');
+    userId = firebase.auth().currentUser.uid;
+    console.log("uid",userId);
+    allUsersRef.child(userId).child('features').child(design_text).set({ 
+        content: design_text,
+        severity: "",
+        origin: "Design",
+        state: 1
+    });
     var design_html = generateDevelopmentDesignChecklistItem(design_text);
     console.log("design html",design_html);
     return design_html;
@@ -476,6 +553,7 @@ function getDesignTask(){
 function getDesignTaskNoReference(){
     var design_text = $("#design-text").val();
     console.log("design task:"+design_text);
+    
     var design_html = generateDevelopmentDesignChecklistItemNoReference(design_text);
     console.log("design html",design_html);
     return design_html;
@@ -483,6 +561,18 @@ function getDesignTaskNoReference(){
 function getUserIssue(){
     var user_text = $("#user-text").val();
     var severity_user_value = $("#select-severity-user").val();
+    console.log("user_text: "+user_text, "severity_user_value: "+severity_user_value);
+    myFirebase = firebase.database().ref();
+    allUsersRef = myFirebase.child('users');
+    userId = firebase.auth().currentUser.uid;
+    console.log("uid",userId);
+    allUsersRef.child(userId).child('features').child(user_text).set({ 
+        content: user_text,
+        severity: severity_user_value,
+        origin: "User Testing",
+        state: 1
+    });
+    //writeUserIssueData(user_text, severity_user_value);
     console.log("user text", user_text);
     $("#user-text").empty("");
     return generateDevelopmentUserTestingChecklistItem(user_text, severity_user_value);
@@ -490,6 +580,16 @@ function getUserIssue(){
 function getExpertIssue(){
     var expert_text = $("#expert-text").val();
     var severity_expert_value = $("#select-severity-expert").val();
+    myFirebase = firebase.database().ref();
+    allUsersRef = myFirebase.child('users');
+    userId = firebase.auth().currentUser.uid;
+    console.log("uid",userId);
+    allUsersRef.child(userId).child('features').child(expert_text).set({ 
+        content: expert_text,
+        severity: severity_expert_value,
+        origin: "Expert Testing",
+        state: 1
+    });
     $("#expert-text").val("");
     return generateDevelopmentExpertTestingChecklistItem(expert_text, severity_expert_value);
 }
@@ -497,7 +597,8 @@ function clearDesignField(){
     $("#design-text").val("");
 }
 function writeUserIssueData(cont, sev){
-    myFirebase.child('users').child('features').set({cont: {content: cont, origin: "User Testing", severity: sev}});
+
+    myFirebase.child('users').child(userId).child('features').set({cont: {content: cont, origin: "User Testing", severity: sev}});
 }
 function addWcagItem(dest, content, listItem, level){
     var item = 
@@ -563,6 +664,8 @@ function calculateScore() {
     });
 }
 
+
+
 $(document).ready(function() {
     
     applyColorScheme(colorScheme);
@@ -586,7 +689,7 @@ $(document).ready(function() {
             addWcagItem(dest, name[i], list[i], level[i]);
         }
     });
-
+    //loadUserIssues();
 
     $('#failed-expert').on('click', ()=>{
         displayGetExpertIssues();
@@ -615,6 +718,7 @@ $(document).ready(function() {
         goToDWI();
     });
     $(document).on('change', '.user-select', function () {
+        console.log("user select field changed");
         var selectedText = $(this).val();
     
         myFirebase = firebase.database().ref();
@@ -622,6 +726,7 @@ $(document).ready(function() {
         userId = firebase.auth().currentUser.uid;
         //var selectedText = $(this).is(':checked');
         var selectedID = $(this).attr("id");
+        console.log("accessing ", selectedID);
         //$.getJSON("dontwingit-export.json", function(json) {
           
         allUsersRef.child(userId).child('features').child(selectedID).update(
@@ -631,7 +736,44 @@ $(document).ready(function() {
         //});
         calculateScore();
     });
+    $(document).on('change', '.expert-select', function () {
+        console.log("expert select field changed");
+        var selectedText = $(this).val();
     
+        myFirebase = firebase.database().ref();
+        allUsersRef = myFirebase.child('users');
+        userId = firebase.auth().currentUser.uid;
+        //var selectedText = $(this).is(':checked');
+        var selectedID = $(this).attr("id");
+        console.log("accessing ", selectedID);
+        //$.getJSON("dontwingit-export.json", function(json) {
+          
+        allUsersRef.child(userId).child('features').child(selectedID).update(
+            {state: selectedText}
+        );
+                
+        //});
+        calculateScore();
+    });
+    $(document).on('change', '.design-select', function () {
+        console.log("design select field changed");
+        var selectedText = $(this).val();
+    
+        myFirebase = firebase.database().ref();
+        allUsersRef = myFirebase.child('users');
+        userId = firebase.auth().currentUser.uid;
+        //var selectedText = $(this).is(':checked');
+        var selectedID = $(this).attr("id");
+        console.log("accessing ", selectedID);
+        //$.getJSON("dontwingit-export.json", function(json) {
+          
+        allUsersRef.child(userId).child('features').child(selectedID).update(
+            {state: selectedText}
+        );
+                
+        //});
+        calculateScore();
+    });
     $(document).on('change', '.wcag-select', function () {
         var selectedText = $(this).val();
         myFirebase = firebase.database().ref();

@@ -34,14 +34,42 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // unique ID automatically.
   allUsersRef.once('value', function(snapshot) {
     if(snapshot.hasChild(user.uid)) {
+      console.log("user exists");
       $("#points").text(snapshot.child(user.uid).child("points").val().toString().substring(0,4));
       //make data persist on screen
+      console.log("snpashot",snapshot);
+      var featureRef = allUsersRef.child(user.uid).child("features");
+      featureRef.once("value").then(function(snap) {
+        /*
+        for(var i = 0; i < 78; i++) {
+          $('.user-select').eq(i).val(snapshot.child(i).val());
+        }
+        */
+        //generateDevelopmentUserTestingChecklistItem(snapshot.val());
+        /*
+        console.log("snapshot", snap.val());
+        console.log("snap.val type", typeof snap.val());
+        console.log("sdvde", snap.val()["another one"]);
+        */
+        //var features_list = JSON.parse(snap.val());
+        for(var item in snap.val()){
+          console.log(item+":", snap.val()[item]);
+          postFeature(snap.val()[item]["content"], snap.val()[item]["origin"], snap.val()[item]["severity"], snap.val()[item]["state"]);
+        }
+        /*features_list.forEach((entry) => {
+          console.log("entry", entry);
+          
+        })*/
+        
+       
+      });
       var confLevelRef = allUsersRef.child(user.uid).child("wcag").child("conf_level");
       confLevelRef.once("value").then(function(snapshot) {
         for(var i = 0; i < 78; i++) {
           $('.wcag-select').eq(i).val(snapshot.child(i).val());
         }
       });
+      
     }
     else {
       allUsersRef.child(user.uid).set({
